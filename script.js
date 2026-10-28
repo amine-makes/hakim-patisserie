@@ -1,37 +1,78 @@
+// Configuration: change this constant to update Hakim Pastry's WhatsApp Business number.
 const WHATSAPP_NUMBER = "212625783839";
+const CUSTOM_CAKE_IMAGE_MAX_SIZE = 5 * 1024 * 1024;
 const CART_STORAGE_KEY = "hakim-patisserie-order";
 const THEME_STORAGE_KEY = "hakim-patisserie-theme";
+const CAKE_PRICING = {
+  "birthday-cakes": {
+    title: "GÃ¢teaux Design",
+    subtitle: "GÃ¢teaux dâ€™anniversaire â€¢ Layer Cakes",
+    sizes: [
+      { people: 6, price: 300 },
+      { people: 8, price: 400 },
+      { people: 10, price: 500 },
+      { people: 12, price: 600 },
+      { people: 15, price: 750 },
+      { people: 20, price: 1000 }
+    ]
+  },
+  "wedding-cakes": {
+    title: "PiÃ¨ces MontÃ©es de Mariage",
+    subtitle: "GÃ¢teaux de mariage",
+    sizeLabel: "Nombre de personnes",
+    unit: "personnes",
+    buttonLabel: "Choisir ce gÃ¢teau",
+    sizes: [
+      { people: 40, price: 2000 },
+      { people: 50, price: 2500 },
+      { people: 60, price: 3500 },
+      { people: 70, price: 3500 },
+      { people: 80, price: 4000 }
+    ]
+  },
+  plateaux: {
+    title: "Plateau",
+    subtitle: "Assortiments Ã  partager",
+    sizeLabel: "Nombre de piÃ¨ces",
+    unit: "piÃ¨ces",
+    buttonLabel: "Choisir ce plateau",
+    sizes: [
+      { people: 24, price: 140 },
+      { people: 48, price: 250 }
+    ]
+  }
+};
 
 const translations = {
   en: {
-    announcement: "A little sweetness, freshly made in Morocco ✳ Made to order, made with love",
+    announcement: "A little sweetness, freshly made in Morocco âœ³ Made to order, made with love",
     navMenu: "The menu", navStory: "Our little story", bag: "Your order",
     heroEyebrow: "Handcrafted in Morocco", heroTitle: "Make every moment<br><em>taste extraordinary.</em>",
     heroDescription: "Slow mornings, shared tables and one more slice. Find something lovely for your next little celebration.",
     exploreMenu: "Explore the menu", heroNote: "Baked fresh, always", heroFootnote: "A little joy, wrapped in paper.",
-    stickerTop: "MADE BY HAND", stickerBottom: "SHARED WITH LOVE", heroCaption: "Hakim Pastry · Morocco",
+    stickerTop: "MADE BY HAND", stickerBottom: "SHARED WITH LOVE", heroCaption: "Hakim Pastry Â· Morocco",
     marquee: "A little sweetness goes a long way", marqueeTwo: "Made for sharing",
     menuEyebrow: "From our little kitchen", menuTitle: "Something for <em>every</em> sweet tooth.",
     menuIntro: "Explore our own collection of birthday cakes, mini cakes, wedding cakes and pastry platters.",
-    categoryAll: "Everything", categoryBirthdayCakes: "Birthday cakes",
+    categoryAll: "Everything", categoryBirthdayCakes: "Design cakes",
     categoryMiniCakes: "Mini cakes",
-    categoryWeddingCakes: "Wedding cakes",
+    categoryWeddingCakes: "Wedding tiers",
     categoryPlateaux: "Plateaux",
     priceOnRequest: "Price on request",
     productBirthdayCake: "Birthday cake", productMiniCake: "Mini cake",
     productWeddingCake: "Wedding cake", productPlateau: "Plateau",
     productDescription: "Message us for details and availability.", productTag: "Made to order",
-    menuCount: "photo designs", priceNote: "Every design is made to order. Message us for details and availability.",
+    menuCount: "photo designs", priceNote: "Prices shown apply to the listed sizes. For other creations, contact us for details and pricing.",
     storyEyebrow: "A little about us", storyTitle: "Good things take<br><em>a little time.</em>",
     storyBody: "At Hakim Pastry, every creation begins with a simple idea: make something worth gathering around. Explore our photo collection and message us to discuss your order, here in Morocco.",
     storyLink: "Meet your new favourite", signatureLabel: "Made with care, every day",
     orderEyebrow: "A good day starts here", orderTitle: "Your next lovely<br>thing is <em>just a message away.</em>",
     orderCopy: "Tell us what you're celebrating. We'll help make it a little sweeter.",
     whatsappCta: "Let's talk on WhatsApp", floatingLabel: "Chat with us", footerNote: "A little sweetness, made by hand in Morocco.",
-    backToTop: "Back to the top ↑", drawerEyebrow: "Something lovely", drawerTitle: "Your order",
+    backToTop: "Back to the top â†‘", drawerEyebrow: "Something lovely", drawerTitle: "Your order",
     drawerEmpty: "Your order is waiting for a little something.", continueShopping: "Take a look at the menu",
-    drawerDisclaimer: "We'll confirm your order and final price with you on WhatsApp.",
-    sendOrder: "Send order on WhatsApp", added: "Added to your order", remove: "Remove",
+    drawerDisclaimer: "Your order is only confirmed once Hakim Pastry has checked and confirmed it on WhatsApp.",
+    sendOrder: "Order on WhatsApp", added: "Added to your order", remove: "Remove",
     whatsappMessage: "Hello Hakim Pastry! I'd like to order:",
     availabilityMessage: "Could you confirm availability and the final price?",
     whatsappGreeting: "Hello Hakim Pastry! I'd love to know more about your treats.",
@@ -42,81 +83,81 @@ const translations = {
     floatingAria: "Chat with Hakim Pastry on WhatsApp", itemAdded: "Added to your order"
   },
   fr: {
-    announcement: "Une touche de douceur, préparée au Maroc ✳ Sur commande, avec amour",
+    announcement: "Une touche de douceur, prÃ©parÃ©e au Maroc âœ³ Sur commande, avec amour",
     navMenu: "La carte", navStory: "Notre histoire", bag: "Ma commande",
-    heroEyebrow: "Préparé avec soin au Maroc", heroTitle: "Chaque moment mérite<br><em>une touche d'exception.</em>",
-    heroDescription: "Des matins tranquilles, une table à partager et une dernière part. Trouvez une douceur pour votre prochaine fête.",
-    exploreMenu: "Découvrir la carte", heroNote: "Toujours frais, toujours fait maison", heroFootnote: "Un peu de bonheur, joliment emballé.",
-    stickerTop: "FAIT À LA MAIN", stickerBottom: "À PARTAGER AVEC AMOUR", heroCaption: "Hakim Pastry · Maroc",
-    marquee: "Un peu de douceur change tout", marqueeTwo: "À partager",
+    heroEyebrow: "PrÃ©parÃ© avec soin au Maroc", heroTitle: "Chaque moment mÃ©rite<br><em>une touche d'exception.</em>",
+    heroDescription: "Des matins tranquilles, une table Ã  partager et une derniÃ¨re part. Trouvez une douceur pour votre prochaine fÃªte.",
+    exploreMenu: "DÃ©couvrir la carte", heroNote: "Toujours frais, toujours fait maison", heroFootnote: "Un peu de bonheur, joliment emballÃ©.",
+    stickerTop: "FAIT Ã€ LA MAIN", stickerBottom: "Ã€ PARTAGER AVEC AMOUR", heroCaption: "Hakim Pastry Â· Maroc",
+    marquee: "Un peu de douceur change tout", marqueeTwo: "Ã€ partager",
     menuEyebrow: "Tout droit de notre cuisine", menuTitle: "Une douceur pour <em>chaque</em> envie.",
-    menuIntro: "Découvrez notre collection de gâteaux d'anniversaire, mini-gâteaux, gâteaux de mariage et plateaux.",
-    categoryAll: "Tout", categoryBirthdayCakes: "Gâteaux d'anniversaire",
-    categoryMiniCakes: "Mini-gâteaux",
-    categoryWeddingCakes: "Pièces montées de mariage",
+    menuIntro: "DÃ©couvrez notre collection de gÃ¢teaux d'anniversaire, mini-gÃ¢teaux, gÃ¢teaux de mariage et plateaux.",
+    categoryAll: "Tout", categoryBirthdayCakes: "GÃ¢teaux Design",
+    categoryMiniCakes: "Mini-gÃ¢teaux",
+    categoryWeddingCakes: "PiÃ¨ces MontÃ©es de Mariage",
     categoryPlateaux: "Plateaux",
     priceOnRequest: "Prix sur demande",
-    productBirthdayCake: "Gâteau d'anniversaire", productMiniCake: "Mini-gâteau",
-    productWeddingCake: "Gâteau de mariage", productPlateau: "Plateau",
-    productDescription: "Écrivez-nous pour les détails et la disponibilité.", productTag: "Sur commande",
-    menuCount: "modèles en photo", priceNote: "Chaque modèle est préparé sur commande. Écrivez-nous pour les détails et la disponibilité.",
+    productBirthdayCake: "GÃ¢teau d'anniversaire", productMiniCake: "Mini-gÃ¢teau",
+    productWeddingCake: "GÃ¢teau de mariage", productPlateau: "Plateau",
+    productDescription: "Ã‰crivez-nous pour les dÃ©tails et la disponibilitÃ©.", productTag: "Sur commande",
+    menuCount: "modÃ¨les en photo", priceNote: "Les prix affichÃ©s concernent les tailles indiquÃ©es. Pour les autres crÃ©ations, contactez-nous afin de connaÃ®tre les dÃ©tails et le tarif.",
     storyEyebrow: "Un peu de nous", storyTitle: "Les bonnes choses<br>prennent <em>leur temps.</em>",
-    storyBody: "Chez Hakim Pastry, chaque création part d'une idée toute simple : préparer de bonnes choses autour desquelles se retrouver. Découvrez notre collection en photo et écrivez-nous pour votre commande, ici au Maroc.",
-    storyLink: "Trouvez votre nouvelle préférée", signatureLabel: "Préparé avec soin, chaque jour",
-    orderEyebrow: "Les bons jours commencent ici", orderTitle: "Votre prochaine douceur<br>est <em>à un message d'ici.</em>",
-    orderCopy: "Dites-nous ce que vous fêtez. Nous rendrons ce moment encore plus doux.",
-    whatsappCta: "Parlons sur WhatsApp", floatingLabel: "Écrivez-nous", footerNote: "Un peu de douceur, faite à la main au Maroc.",
-    backToTop: "Retour en haut ↑", drawerEyebrow: "Une jolie envie", drawerTitle: "Ma commande",
-    drawerEmpty: "Votre commande attend encore quelques douceurs.", continueShopping: "Découvrir la carte",
-    drawerDisclaimer: "Nous confirmerons votre commande et le prix final sur WhatsApp.",
-    sendOrder: "Envoyer sur WhatsApp", added: "Ajouté à votre commande", remove: "Supprimer",
+    storyBody: "Chez Hakim Pastry, chaque crÃ©ation part d'une idÃ©e toute simple : prÃ©parer de bonnes choses autour desquelles se retrouver. DÃ©couvrez notre collection en photo et Ã©crivez-nous pour votre commande, ici au Maroc.",
+    storyLink: "Trouvez votre nouvelle prÃ©fÃ©rÃ©e", signatureLabel: "PrÃ©parÃ© avec soin, chaque jour",
+    orderEyebrow: "Les bons jours commencent ici", orderTitle: "Votre prochaine douceur<br>est <em>Ã  un message d'ici.</em>",
+    orderCopy: "Dites-nous ce que vous fÃªtez. Nous rendrons ce moment encore plus doux.",
+    whatsappCta: "Parlons sur WhatsApp", floatingLabel: "Ã‰crivez-nous", footerNote: "Un peu de douceur, faite Ã  la main au Maroc.",
+    backToTop: "Retour en haut â†‘", drawerEyebrow: "Une jolie envie", drawerTitle: "Ma commande",
+    drawerEmpty: "Votre panier est vide. Ajoutez dâ€™abord un gÃ¢teau pour passer commande.", continueShopping: "DÃ©couvrir la carte",
+    drawerDisclaimer: "Votre commande ne sera confirmÃ©e quâ€™aprÃ¨s vÃ©rification et confirmation de Hakim Pastry sur WhatsApp.",
+    sendOrder: "Commander sur WhatsApp", added: "AjoutÃ© au panier", remove: "Supprimer",
     whatsappMessage: "Bonjour Hakim Pastry ! J'aimerais commander :",
-    availabilityMessage: "Pouvez-vous confirmer la disponibilité et le prix final ?",
+    availabilityMessage: "Pouvez-vous confirmer la disponibilitÃ© et le prix final ?",
     whatsappGreeting: "Bonjour Hakim Pastry ! J'aimerais en savoir plus sur vos douceurs.",
     themeLight: "Passer en mode clair", themeDark: "Passer en mode sombre",
     themeDarkText: "Activer le mode sombre", themeLightText: "Activer le mode clair",
-    menuAria: "Filtrer la carte par catégorie", navAria: "Navigation principale",
+    menuAria: "Filtrer la carte par catÃ©gorie", navAria: "Navigation principale",
     logoAria: "Accueil Hakim Pastry", drawerClose: "Fermer la commande",
-    floatingAria: "Contacter Hakim Pastry sur WhatsApp", itemAdded: "Ajouté à votre commande"
+    floatingAria: "Contacter Hakim Pastry sur WhatsApp", itemAdded: "AjoutÃ© Ã  votre commande"
   },
   ar: {
-    announcement: "حلويات طازجة تُحضّر بحب في المغرب ✳ حسب الطلب وبكل محبة",
-    navMenu: "قائمة الحلويات", navStory: "قصتنا", bag: "طلبي",
-    heroEyebrow: "حلويات حارتكم", heroTitle: "لأجل <em>اللحظات</em><br>الجميلة.",
-    heroDescription: "صباح هادئ، مائدة تجمع الأحباب، وقطعة حلوى أخرى. اكتشفوا ما يجعل مناسبتكم القادمة أجمل.",
-    exploreMenu: "اكتشفوا القائمة", heroNote: "طازجة كل يوم", heroFootnote: "قليل من الفرح، مغلف بعناية.",
-    stickerTop: "صُنع يدويًا", stickerBottom: "بكل محبة", heroCaption: "Hakim Pastry · المغرب",
-    marquee: "قليل من الحلاوة يصنع فرقًا كبيرًا", marqueeTwo: "أحلى مع الأحباب",
-    menuEyebrow: "من مطبخنا الصغير", menuTitle: "حلوى لكل <em>مناسبة.</em>",
-    menuIntro: "اكتشفوا مجموعتنا المصوّرة من كعكات أعياد الميلاد والكعكات الصغيرة وكعكات الزفاف وصواني الحلويات.",
-    categoryAll: "الكل", categoryBirthdayCakes: "كعكات أعياد الميلاد",
-    categoryMiniCakes: "كعكات صغيرة",
-    categoryWeddingCakes: "كعكات زفاف متعددة الطبقات",
-    categoryPlateaux: "صواني الحلوى",
-    priceOnRequest: "السعر عند الطلب",
-    productBirthdayCake: "كعكة عيد ميلاد", productMiniCake: "كعكة صغيرة",
-    productWeddingCake: "كعكة زفاف", productPlateau: "صينية حلويات",
-    productDescription: "راسلونا لمعرفة التفاصيل والتوفر.", productTag: "حسب الطلب",
-    menuCount: "تصاميم مصوّرة", priceNote: "يُحضّر كل تصميم حسب الطلب. راسلونا لمعرفة التفاصيل والتوفر.",
-    storyEyebrow: "تعرفوا علينا", storyTitle: "الأشياء الجميلة<br>تحتاج <em>قليلًا من الوقت.</em>",
-    storyBody: "في Hakim Pastry، تبدأ كل وصفة بفكرة بسيطة: أن نصنع شيئًا يجمع الأحباب. اكتشفوا مجموعتنا المصوّرة وراسلونا لمناقشة طلبكم، هنا في المغرب.",
-    storyLink: "اكتشفوا حلوى جديدة", signatureLabel: "محضّر بعناية كل يوم",
-    orderEyebrow: "يبدأ اليوم الجميل من هنا", orderTitle: "حلاوتكم القادمة<br><em>على بُعد رسالة.</em>",
-    orderCopy: "أخبرونا ما المناسبة، وسنضيف إليها المزيد من الحلاوة.",
-    whatsappCta: "تواصلوا معنا عبر واتساب", floatingLabel: "راسلونا",
-    footerNote: "حلاوة مغربية، محضرة يدويًا بكل حب.",
-    backToTop: "العودة إلى الأعلى ↑", drawerEyebrow: "اختيار لذيذ", drawerTitle: "طلبي",
-    drawerEmpty: "طلبكم ينتظر إضافة شيء لذيذ.", continueShopping: "تصفحوا قائمة الحلويات",
-    drawerDisclaimer: "سنؤكد طلبكم والسعر النهائي عبر واتساب.",
-    sendOrder: "إرسال الطلب عبر واتساب", added: "أُضيف إلى طلبكم", remove: "حذف",
-    whatsappMessage: "مرحبًا Hakim Pastry! أود طلب:",
-    availabilityMessage: "هل يمكنكم تأكيد التوفر والسعر النهائي؟",
-    whatsappGreeting: "مرحبًا Hakim Pastry! أود معرفة المزيد عن حلوياتكم.",
-    themeLight: "التبديل إلى الوضع الفاتح", themeDark: "التبديل إلى الوضع الداكن",
-    themeDarkText: "تفعيل الوضع الداكن", themeLightText: "تفعيل الوضع الفاتح",
-    menuAria: "تصفية الحلويات حسب الفئة", navAria: "التنقل الرئيسي",
-    logoAria: "الصفحة الرئيسية Hakim Pastry", drawerClose: "إغلاق الطلب",
-    floatingAria: "تواصلوا مع Hakim Pastry عبر واتساب", itemAdded: "أُضيف إلى طلبكم"
+    announcement: "Ø­Ù„ÙˆÙŠØ§Øª Ø·Ø§Ø²Ø¬Ø© ØªÙØ­Ø¶Ù‘Ø± Ø¨Ø­Ø¨ ÙÙŠ Ø§Ù„Ù…ØºØ±Ø¨ âœ³ Ø­Ø³Ø¨ Ø§Ù„Ø·Ù„Ø¨ ÙˆØ¨ÙƒÙ„ Ù…Ø­Ø¨Ø©",
+    navMenu: "Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø­Ù„ÙˆÙŠØ§Øª", navStory: "Ù‚ØµØªÙ†Ø§", bag: "Ø·Ù„Ø¨ÙŠ",
+    heroEyebrow: "Ø­Ù„ÙˆÙŠØ§Øª Ø­Ø§Ø±ØªÙƒÙ…", heroTitle: "Ù„Ø£Ø¬Ù„ <em>Ø§Ù„Ù„Ø­Ø¸Ø§Øª</em><br>Ø§Ù„Ø¬Ù…ÙŠÙ„Ø©.",
+    heroDescription: "ØµØ¨Ø§Ø­ Ù‡Ø§Ø¯Ø¦ØŒ Ù…Ø§Ø¦Ø¯Ø© ØªØ¬Ù…Ø¹ Ø§Ù„Ø£Ø­Ø¨Ø§Ø¨ØŒ ÙˆÙ‚Ø·Ø¹Ø© Ø­Ù„ÙˆÙ‰ Ø£Ø®Ø±Ù‰. Ø§ÙƒØªØ´ÙÙˆØ§ Ù…Ø§ ÙŠØ¬Ø¹Ù„ Ù…Ù†Ø§Ø³Ø¨ØªÙƒÙ… Ø§Ù„Ù‚Ø§Ø¯Ù…Ø© Ø£Ø¬Ù…Ù„.",
+    exploreMenu: "Ø§ÙƒØªØ´ÙÙˆØ§ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©", heroNote: "Ø·Ø§Ø²Ø¬Ø© ÙƒÙ„ ÙŠÙˆÙ…", heroFootnote: "Ù‚Ù„ÙŠÙ„ Ù…Ù† Ø§Ù„ÙØ±Ø­ØŒ Ù…ØºÙ„Ù Ø¨Ø¹Ù†Ø§ÙŠØ©.",
+    stickerTop: "ØµÙÙ†Ø¹ ÙŠØ¯ÙˆÙŠÙ‹Ø§", stickerBottom: "Ø¨ÙƒÙ„ Ù…Ø­Ø¨Ø©", heroCaption: "Hakim Pastry Â· Ø§Ù„Ù…ØºØ±Ø¨",
+    marquee: "Ù‚Ù„ÙŠÙ„ Ù…Ù† Ø§Ù„Ø­Ù„Ø§ÙˆØ© ÙŠØµÙ†Ø¹ ÙØ±Ù‚Ù‹Ø§ ÙƒØ¨ÙŠØ±Ù‹Ø§", marqueeTwo: "Ø£Ø­Ù„Ù‰ Ù…Ø¹ Ø§Ù„Ø£Ø­Ø¨Ø§Ø¨",
+    menuEyebrow: "Ù…Ù† Ù…Ø·Ø¨Ø®Ù†Ø§ Ø§Ù„ØµØºÙŠØ±", menuTitle: "Ø­Ù„ÙˆÙ‰ Ù„ÙƒÙ„ <em>Ù…Ù†Ø§Ø³Ø¨Ø©.</em>",
+    menuIntro: "Ø§ÙƒØªØ´ÙÙˆØ§ Ù…Ø¬Ù…ÙˆØ¹ØªÙ†Ø§ Ø§Ù„Ù…ØµÙˆÙ‘Ø±Ø© Ù…Ù† ÙƒØ¹ÙƒØ§Øª Ø£Ø¹ÙŠØ§Ø¯ Ø§Ù„Ù…ÙŠÙ„Ø§Ø¯ ÙˆØ§Ù„ÙƒØ¹ÙƒØ§Øª Ø§Ù„ØµØºÙŠØ±Ø© ÙˆÙƒØ¹ÙƒØ§Øª Ø§Ù„Ø²ÙØ§Ù ÙˆØµÙˆØ§Ù†ÙŠ Ø§Ù„Ø­Ù„ÙˆÙŠØ§Øª.",
+    categoryAll: "Ø§Ù„ÙƒÙ„", categoryBirthdayCakes: "ÙƒØ¹ÙƒØ§Øª Ø£Ø¹ÙŠØ§Ø¯ Ø§Ù„Ù…ÙŠÙ„Ø§Ø¯",
+    categoryMiniCakes: "ÙƒØ¹ÙƒØ§Øª ØµØºÙŠØ±Ø©",
+    categoryWeddingCakes: "ÙƒØ¹ÙƒØ§Øª Ø²ÙØ§Ù Ù…ØªØ¹Ø¯Ø¯Ø© Ø§Ù„Ø·Ø¨Ù‚Ø§Øª",
+    categoryPlateaux: "ØµÙˆØ§Ù†ÙŠ Ø§Ù„Ø­Ù„ÙˆÙ‰",
+    priceOnRequest: "Ø§Ù„Ø³Ø¹Ø± Ø¹Ù†Ø¯ Ø§Ù„Ø·Ù„Ø¨",
+    productBirthdayCake: "ÙƒØ¹ÙƒØ© Ø¹ÙŠØ¯ Ù…ÙŠÙ„Ø§Ø¯", productMiniCake: "ÙƒØ¹ÙƒØ© ØµØºÙŠØ±Ø©",
+    productWeddingCake: "ÙƒØ¹ÙƒØ© Ø²ÙØ§Ù", productPlateau: "ØµÙŠÙ†ÙŠØ© Ø­Ù„ÙˆÙŠØ§Øª",
+    productDescription: "Ø±Ø§Ø³Ù„ÙˆÙ†Ø§ Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„ØªÙØ§ØµÙŠÙ„ ÙˆØ§Ù„ØªÙˆÙØ±.", productTag: "Ø­Ø³Ø¨ Ø§Ù„Ø·Ù„Ø¨",
+    menuCount: "ØªØµØ§Ù…ÙŠÙ… Ù…ØµÙˆÙ‘Ø±Ø©", priceNote: "ÙŠÙØ­Ø¶Ù‘Ø± ÙƒÙ„ ØªØµÙ…ÙŠÙ… Ø­Ø³Ø¨ Ø§Ù„Ø·Ù„Ø¨. Ø±Ø§Ø³Ù„ÙˆÙ†Ø§ Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„ØªÙØ§ØµÙŠÙ„ ÙˆØ§Ù„ØªÙˆÙØ±.",
+    storyEyebrow: "ØªØ¹Ø±ÙÙˆØ§ Ø¹Ù„ÙŠÙ†Ø§", storyTitle: "Ø§Ù„Ø£Ø´ÙŠØ§Ø¡ Ø§Ù„Ø¬Ù…ÙŠÙ„Ø©<br>ØªØ­ØªØ§Ø¬ <em>Ù‚Ù„ÙŠÙ„Ù‹Ø§ Ù…Ù† Ø§Ù„ÙˆÙ‚Øª.</em>",
+    storyBody: "ÙÙŠ Hakim PastryØŒ ØªØ¨Ø¯Ø£ ÙƒÙ„ ÙˆØµÙØ© Ø¨ÙÙƒØ±Ø© Ø¨Ø³ÙŠØ·Ø©: Ø£Ù† Ù†ØµÙ†Ø¹ Ø´ÙŠØ¦Ù‹Ø§ ÙŠØ¬Ù…Ø¹ Ø§Ù„Ø£Ø­Ø¨Ø§Ø¨. Ø§ÙƒØªØ´ÙÙˆØ§ Ù…Ø¬Ù…ÙˆØ¹ØªÙ†Ø§ Ø§Ù„Ù…ØµÙˆÙ‘Ø±Ø© ÙˆØ±Ø§Ø³Ù„ÙˆÙ†Ø§ Ù„Ù…Ù†Ø§Ù‚Ø´Ø© Ø·Ù„Ø¨ÙƒÙ…ØŒ Ù‡Ù†Ø§ ÙÙŠ Ø§Ù„Ù…ØºØ±Ø¨.",
+    storyLink: "Ø§ÙƒØªØ´ÙÙˆØ§ Ø­Ù„ÙˆÙ‰ Ø¬Ø¯ÙŠØ¯Ø©", signatureLabel: "Ù…Ø­Ø¶Ù‘Ø± Ø¨Ø¹Ù†Ø§ÙŠØ© ÙƒÙ„ ÙŠÙˆÙ…",
+    orderEyebrow: "ÙŠØ¨Ø¯Ø£ Ø§Ù„ÙŠÙˆÙ… Ø§Ù„Ø¬Ù…ÙŠÙ„ Ù…Ù† Ù‡Ù†Ø§", orderTitle: "Ø­Ù„Ø§ÙˆØªÙƒÙ… Ø§Ù„Ù‚Ø§Ø¯Ù…Ø©<br><em>Ø¹Ù„Ù‰ Ø¨ÙØ¹Ø¯ Ø±Ø³Ø§Ù„Ø©.</em>",
+    orderCopy: "Ø£Ø®Ø¨Ø±ÙˆÙ†Ø§ Ù…Ø§ Ø§Ù„Ù…Ù†Ø§Ø³Ø¨Ø©ØŒ ÙˆØ³Ù†Ø¶ÙŠÙ Ø¥Ù„ÙŠÙ‡Ø§ Ø§Ù„Ù…Ø²ÙŠØ¯ Ù…Ù† Ø§Ù„Ø­Ù„Ø§ÙˆØ©.",
+    whatsappCta: "ØªÙˆØ§ØµÙ„ÙˆØ§ Ù…Ø¹Ù†Ø§ Ø¹Ø¨Ø± ÙˆØ§ØªØ³Ø§Ø¨", floatingLabel: "Ø±Ø§Ø³Ù„ÙˆÙ†Ø§",
+    footerNote: "Ø­Ù„Ø§ÙˆØ© Ù…ØºØ±Ø¨ÙŠØ©ØŒ Ù…Ø­Ø¶Ø±Ø© ÙŠØ¯ÙˆÙŠÙ‹Ø§ Ø¨ÙƒÙ„ Ø­Ø¨.",
+    backToTop: "Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø£Ø¹Ù„Ù‰ â†‘", drawerEyebrow: "Ø§Ø®ØªÙŠØ§Ø± Ù„Ø°ÙŠØ°", drawerTitle: "Ø·Ù„Ø¨ÙŠ",
+    drawerEmpty: "Ø·Ù„Ø¨ÙƒÙ… ÙŠÙ†ØªØ¸Ø± Ø¥Ø¶Ø§ÙØ© Ø´ÙŠØ¡ Ù„Ø°ÙŠØ°.", continueShopping: "ØªØµÙØ­ÙˆØ§ Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ø­Ù„ÙˆÙŠØ§Øª",
+    drawerDisclaimer: "Ø³Ù†Ø¤ÙƒØ¯ Ø·Ù„Ø¨ÙƒÙ… ÙˆØ§Ù„Ø³Ø¹Ø± Ø§Ù„Ù†Ù‡Ø§Ø¦ÙŠ Ø¹Ø¨Ø± ÙˆØ§ØªØ³Ø§Ø¨.",
+    sendOrder: "Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø·Ù„Ø¨ Ø¹Ø¨Ø± ÙˆØ§ØªØ³Ø§Ø¨", added: "Ø£ÙØ¶ÙŠÙ Ø¥Ù„Ù‰ Ø·Ù„Ø¨ÙƒÙ…", remove: "Ø­Ø°Ù",
+    whatsappMessage: "Ù…Ø±Ø­Ø¨Ù‹Ø§ Hakim Pastry! Ø£ÙˆØ¯ Ø·Ù„Ø¨:",
+    availabilityMessage: "Ù‡Ù„ ÙŠÙ…ÙƒÙ†ÙƒÙ… ØªØ£ÙƒÙŠØ¯ Ø§Ù„ØªÙˆÙØ± ÙˆØ§Ù„Ø³Ø¹Ø± Ø§Ù„Ù†Ù‡Ø§Ø¦ÙŠØŸ",
+    whatsappGreeting: "Ù…Ø±Ø­Ø¨Ù‹Ø§ Hakim Pastry! Ø£ÙˆØ¯ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…Ø²ÙŠØ¯ Ø¹Ù† Ø­Ù„ÙˆÙŠØ§ØªÙƒÙ….",
+    themeLight: "Ø§Ù„ØªØ¨Ø¯ÙŠÙ„ Ø¥Ù„Ù‰ Ø§Ù„ÙˆØ¶Ø¹ Ø§Ù„ÙØ§ØªØ­", themeDark: "Ø§Ù„ØªØ¨Ø¯ÙŠÙ„ Ø¥Ù„Ù‰ Ø§Ù„ÙˆØ¶Ø¹ Ø§Ù„Ø¯Ø§ÙƒÙ†",
+    themeDarkText: "ØªÙØ¹ÙŠÙ„ Ø§Ù„ÙˆØ¶Ø¹ Ø§Ù„Ø¯Ø§ÙƒÙ†", themeLightText: "ØªÙØ¹ÙŠÙ„ Ø§Ù„ÙˆØ¶Ø¹ Ø§Ù„ÙØ§ØªØ­",
+    menuAria: "ØªØµÙÙŠØ© Ø§Ù„Ø­Ù„ÙˆÙŠØ§Øª Ø­Ø³Ø¨ Ø§Ù„ÙØ¦Ø©", navAria: "Ø§Ù„ØªÙ†Ù‚Ù„ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠ",
+    logoAria: "Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© Hakim Pastry", drawerClose: "Ø¥ØºÙ„Ø§Ù‚ Ø§Ù„Ø·Ù„Ø¨",
+    floatingAria: "ØªÙˆØ§ØµÙ„ÙˆØ§ Ù…Ø¹ Hakim Pastry Ø¹Ø¨Ø± ÙˆØ§ØªØ³Ø§Ø¨", itemAdded: "Ø£ÙØ¶ÙŠÙ Ø¥Ù„Ù‰ Ø·Ù„Ø¨ÙƒÙ…"
   }
 };
 
@@ -264,6 +305,7 @@ const productNameKeys = {
   "wedding-cakes": "productWeddingCake",
   plateaux: "productPlateau"
 };
+const selectedServings = new Map();
 products.forEach(product => {
   const number = (productCategoryCounts.get(product.category) || 0) + 1;
   productCategoryCounts.set(product.category, number);
@@ -271,10 +313,39 @@ products.forEach(product => {
 });
 
 function getProductName(product) {
+  const pricing = CAKE_PRICING[product.category];
+  if (pricing) {
+    return `${pricing.title} Â· ModÃ¨le ${String(productNumbers.get(product.id)).padStart(2, "0")}`;
+  }
   return `${t(productNameKeys[product.category])} ${String(productNumbers.get(product.id)).padStart(2, "0")}`;
 }
 
-let language = "en";
+function getCartKey(productId, servings) {
+  return `${productId}::${servings || "Ã -confirmer"}`;
+}
+
+function getServingPrice(productId, servings) {
+  const product = products.find(item => item.id === productId);
+  const pricing = product && CAKE_PRICING[product.category];
+  const size = pricing && pricing.sizes.find(item => item.people === servings);
+  return size ? size.price : null;
+}
+
+function getServingLabel(productId, servings) {
+  const product = products.find(item => item.id === productId);
+  const unit = product && CAKE_PRICING[product.category]?.unit;
+  return `${servings} ${unit || "personnes"}`;
+}
+
+function formatMoney(amount) {
+  return `${new Intl.NumberFormat("fr-FR").format(amount)} DH`;
+}
+
+function formatBusinessNumber() {
+  return `+${WHATSAPP_NUMBER.slice(0, 3)} ${WHATSAPP_NUMBER.slice(3, 6)} ${WHATSAPP_NUMBER.slice(6, 9)} ${WHATSAPP_NUMBER.slice(9)}`;
+}
+
+let language = "fr";
 let activeCategory = "all";
 let cart = loadCart();
 let theme = loadTheme();
@@ -288,14 +359,38 @@ const drawerItems = document.querySelector(".drawer-items");
 const drawerEmpty = document.querySelector(".drawer-empty");
 const toast = document.querySelector(".toast");
 const bagCount = document.querySelector(".bag-count");
+const customCakeForm = document.querySelector("#custom-cake-form");
+const customCakeOpenButton = document.querySelector("#custom-cake-open");
+const inspirationInput = document.querySelector("#cake-inspiration");
+const photoPreview = document.querySelector("#photo-preview");
+const photoPreviewImage = document.querySelector("#photo-preview-image");
+const photoError = document.querySelector("#photo-error");
+const photoWhatsappNote = document.querySelector("#photo-whatsapp-note");
+let inspirationPreviewUrl = "";
 
 function loadCart() {
   try {
     const saved = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "{}");
     if (!saved || typeof saved !== "object" || Array.isArray(saved)) return {};
-    return Object.fromEntries(Object.entries(saved).filter(([id, quantity]) =>
-      products.some(product => product.id === id) && Number.isInteger(quantity) && quantity > 0
-    ));
+    return Object.entries(saved).reduce((restored, [key, value]) => {
+      const item = Number.isInteger(value)
+        ? { productId: key, servings: null, quantity: value }
+        : value;
+      if (!item || typeof item !== "object" ||
+          !products.some(product => product.id === item.productId) ||
+          !Number.isInteger(item.quantity) || item.quantity < 1 ||
+          (item.servings !== null && !Number.isInteger(item.servings)) ||
+          (item.servings !== null && getServingPrice(item.productId, item.servings) === null)) {
+        return restored;
+      }
+      const cartKey = getCartKey(item.productId, item.servings);
+      restored[cartKey] = {
+        productId: item.productId,
+        servings: item.servings,
+        quantity: item.quantity
+      };
+      return restored;
+    }, {});
   } catch (error) {
     console.error("Unable to load the saved order.", error);
     return {};
@@ -304,10 +399,10 @@ function loadCart() {
 
 function loadTheme() {
   try {
-    return localStorage.getItem(THEME_STORAGE_KEY) === "dark" ? "dark" : "light";
+    return localStorage.getItem(THEME_STORAGE_KEY) === "light" ? "light" : "dark";
   } catch (error) {
     console.error("Unable to load the saved color theme.", error);
-    return "light";
+    return "dark";
   }
 }
 
@@ -316,7 +411,7 @@ function saveCart() {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   } catch (error) {
     console.error("Unable to save the current order.", error);
-    showToast(language === "fr" ? "La commande ne peut pas être enregistrée sur cet appareil." : language === "ar" ? "تعذر حفظ الطلب على هذا الجهاز." : "This order could not be saved on this device.");
+    showToast(language === "fr" ? "La commande ne peut pas Ãªtre enregistrÃ©e sur cet appareil." : language === "ar" ? "ØªØ¹Ø°Ø± Ø­ÙØ¸ Ø§Ù„Ø·Ù„Ø¨ Ø¹Ù„Ù‰ Ù‡Ø°Ø§ Ø§Ù„Ø¬Ù‡Ø§Ø²." : "This order could not be saved on this device.");
   }
 }
 
@@ -331,9 +426,9 @@ function formatPrice() {
 function applyTheme() {
   document.documentElement.dataset.theme = theme;
   const themeToggle = document.querySelector(".theme-toggle");
-  themeToggle.innerHTML = `<span aria-hidden="true">${theme === "dark" ? "☀" : "☾"}</span>`;
+  themeToggle.innerHTML = `<span aria-hidden="true">${theme === "dark" ? "â˜€" : "â˜¾"}</span>`;
   themeToggle.setAttribute("aria-label", theme === "dark" ? t("themeLightText") : t("themeDarkText"));
-  document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#211914" : "#f7f1e7";
+  document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#11100e" : "#f7f1e7";
 }
 
 function applyLanguage() {
@@ -347,12 +442,13 @@ function applyLanguage() {
   const nextLanguage = { en: "FR", fr: "AR", ar: "EN" }[language];
   const nextLanguageName = { en: "French", fr: "Arabic", ar: "English" }[language];
   languageToggle.textContent = nextLanguage;
-  languageToggle.setAttribute("aria-label", language === "ar" ? "التبديل إلى الإنجليزية" : language === "fr" ? "Passer en arabe" : "Switch to French");
+  languageToggle.setAttribute("aria-label", language === "ar" ? "Ø§Ù„ØªØ¨Ø¯ÙŠÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø¥Ù†Ø¬Ù„ÙŠØ²ÙŠØ©" : language === "fr" ? "Passer en arabe" : "Switch to French");
   document.querySelector(".main-nav").setAttribute("aria-label", t("navAria"));
   document.querySelector(".category-list").setAttribute("aria-label", t("menuAria"));
   document.querySelectorAll(".wordmark").forEach(link => link.setAttribute("aria-label", t("logoAria")));
   document.querySelector(".drawer-close").setAttribute("aria-label", t("drawerClose"));
   document.querySelector(".floating-whatsapp").setAttribute("aria-label", t("floatingAria"));
+  document.querySelector("[data-business-phone]").textContent = formatBusinessNumber();
   document.querySelector(".language-toggle").title = nextLanguageName;
   renderProducts();
   renderCart();
@@ -363,19 +459,37 @@ function applyLanguage() {
 function renderProducts() {
   const visibleProducts = activeCategory === "all" ? products : products.filter(product => product.category === activeCategory);
   count.textContent = String(visibleProducts.length);
-  grid.innerHTML = visibleProducts.map(product => `
-    <article class="product-card">
+  grid.innerHTML = visibleProducts.map(product => {
+    const pricing = CAKE_PRICING[product.category];
+    const sizes = pricing?.sizes;
+    const selectedSize = sizes && (
+      sizes.find(size => size.people === selectedServings.get(product.id)) || sizes[0]
+    );
+    if (selectedSize) selectedServings.set(product.id, selectedSize.people);
+    return `
+    <article class="product-card${pricing ? " product-card-priced" : ""}" data-product-card="${product.id}">
       <div class="product-image-wrap">
         <img class="product-image" src="${product.image}" alt="${getProductName(product)}" loading="lazy">
         <span class="product-tag">${t("productTag")}</span>
-        <button class="add-button" type="button" data-add="${product.id}" aria-label="${language === "fr" ? "Ajouter" : language === "ar" ? "أضيفوا" : "Add"} ${getProductName(product)} ${language === "fr" ? "à la commande" : language === "ar" ? "إلى الطلب" : "to your order"}">+</button>
+        ${pricing ? "" : `<button class="add-button" type="button" data-add="${product.id}" aria-label="${language === "fr" ? "Ajouter" : language === "ar" ? "Ø£Ø¶ÙŠÙÙˆØ§" : "Add"} ${getProductName(product)} ${language === "fr" ? "Ã  la commande" : language === "ar" ? "Ø¥Ù„Ù‰ Ø§Ù„Ø·Ù„Ø¨" : "to your order"}">+</button>`}
       </div>
       <div class="product-meta">
-        <div><h3 class="product-name">${getProductName(product)}</h3><p class="product-description">${t("productDescription")}</p></div>
-        <span class="product-price">${formatPrice()}</span>
+        <div><h3 class="product-name">${getProductName(product)}</h3><p class="product-description">${pricing ? pricing.subtitle : t("productDescription")}</p></div>
+        <span class="product-price"${pricing ? ` data-starting-price="${product.id}"` : ""}>${pricing ? `Ã€ partir de ${formatMoney(pricing.sizes[0].price)}` : formatPrice()}</span>
       </div>
+      ${pricing ? `
+        <div class="product-order-options">
+          <label class="serving-size-label" for="${product.id}-serving-size">${pricing.sizeLabel || "Nombre de personnes"}
+            <select id="${product.id}-serving-size" data-serving-size="${product.id}">
+              ${sizes.map(size => `<option value="${size.people}" ${size.people === selectedSize.people ? "selected" : ""}>${getServingLabel(product.id, size.people)} â€” ${formatMoney(size.price)}</option>`).join("")}
+            </select>
+          </label>
+          <p class="product-selection" aria-live="polite">Votre sÃ©lection : <span data-selection-size="${product.id}">${getServingLabel(product.id, selectedSize.people)}</span> Â· <strong data-selection-price="${product.id}">${formatMoney(selectedSize.price)}</strong></p>
+          <button class="button button-dark product-select-button" type="button" data-add="${product.id}" data-servings="${selectedSize.people}">${pricing.buttonLabel || "Choisir ce gÃ¢teau"} <span aria-hidden="true">â†—</span></button>
+        </div>
+      ` : ""}
     </article>
-  `).join("");
+  `}).join("");
 }
 
 function updateWhatsAppLinks() {
@@ -383,43 +497,136 @@ function updateWhatsAppLinks() {
   document.querySelectorAll(".whatsapp-link").forEach(link => {
     link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
   });
+  updateCustomCakeWhatsAppLinks();
+}
+
+function updateCustomCakeWhatsAppLinks() {
+  const fields = [
+    ["cake-servings", "ðŸŽ‚ Nombre de personnes"],
+    ["cake-flavor", "ðŸ° Saveur souhaitÃ©e"],
+    ["cake-date", "ðŸ“… Date souhaitÃ©e"],
+    ["cake-budget", "ðŸ’° Budget approximatif"],
+    ["cake-details", "ðŸ“ DÃ©tails"]
+  ];
+  const details = fields
+    .map(([id, label]) => [label, document.querySelector(`#${id}`).value.trim()])
+    .filter(([, value]) => value)
+    .map(([label, value]) => `${label} : ${value}`);
+  if (inspirationInput.files.length) {
+    details.push("ðŸ“· Photo dâ€™inspiration : je la joindrai dans WhatsApp.");
+  }
+  const message = details.length
+    ? `Bonjour Hakim Pastry ! ðŸ‘‹ Je souhaite me renseigner pour un gÃ¢teau personnalisÃ©.\n\n${details.join("\n")}\n\nPouvez-vous me renseigner sur les possibilitÃ©s et le prix ? Merci !`
+    : "Bonjour Hakim Pastry ! ðŸ‘‹ Je voudrais avoir quelques renseignements, sâ€™il vous plaÃ®t.";
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  document.querySelectorAll("[data-custom-whatsapp]").forEach(link => {
+    link.href = href;
+  });
+}
+
+function clearInspirationPreview() {
+  if (inspirationPreviewUrl) URL.revokeObjectURL(inspirationPreviewUrl);
+  inspirationPreviewUrl = "";
+  photoPreviewImage.removeAttribute("src");
+  photoPreview.hidden = true;
+  photoWhatsappNote.hidden = true;
+  photoError.hidden = true;
+  photoError.textContent = "";
+}
+
+function showPhotoError(message) {
+  clearInspirationPreview();
+  inspirationInput.value = "";
+  photoError.textContent = message;
+  photoError.hidden = false;
+  updateCustomCakeWhatsAppLinks();
 }
 
 function updateBagCount() {
-  const total = Object.values(cart).reduce((sum, quantity) => sum + quantity, 0);
+  const total = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
   bagCount.textContent = String(total);
+  bagCount.hidden = total === 0;
   document.querySelector(".bag-button").setAttribute("aria-label", `${t("bag")}, ${total}`);
+  document.querySelector(".bag-button").title = `${t("bag")}, ${total}`;
 }
 
 function renderCart() {
-  const entries = products.filter(product => cart[product.id]);
-  drawerItems.innerHTML = entries.map(product => `
+  const entries = Object.entries(cart).map(([key, item]) => ({
+    key,
+    item,
+    product: products.find(product => product.id === item.productId),
+    unitPrice: getServingPrice(item.productId, item.servings)
+  })).filter(entry => entry.product);
+  const knownTotal = entries.reduce((sum, entry) =>
+    entry.unitPrice === null ? sum : sum + entry.unitPrice * entry.item.quantity, 0
+  );
+  const hasUnpricedItems = entries.some(entry => entry.unitPrice === null);
+
+  drawerItems.innerHTML = entries.map(({ key, item, product, unitPrice }) => `
     <div class="drawer-item">
       <img src="${product.image}" alt="" loading="lazy">
-      <div>
+      <div class="drawer-item-details">
         <h3>${getProductName(product)}</h3>
-        <p>${formatPrice()}</p>
-        <div class="quantity-control" aria-label="${getProductName(product)} ${language === "fr" ? "quantité" : language === "ar" ? "الكمية" : "quantity"}">
-          <button type="button" data-quantity="${product.id}" data-change="-1" aria-label="${language === "fr" ? "Retirer un" : language === "ar" ? "إنقاص الكمية" : "Remove one"}">−</button>
-          <span>${cart[product.id]}</span>
-          <button type="button" data-quantity="${product.id}" data-change="1" aria-label="${language === "fr" ? "Ajouter un" : language === "ar" ? "زيادة الكمية" : "Add one"}">+</button>
+        <p>${item.servings ? `Pour ${getServingLabel(item.productId, item.servings)}` : "Format Ã  choisir ou prix Ã  confirmer"}</p>
+        <p>Prix unitaire : ${unitPrice === null ? "Ã  confirmer" : formatMoney(unitPrice)}</p>
+        <p class="drawer-line-total">Total ligne : ${unitPrice === null ? "Ã  confirmer" : formatMoney(unitPrice * item.quantity)}</p>
+        <div class="quantity-control" aria-label="${getProductName(product)} ${language === "fr" ? "quantitÃ©" : language === "ar" ? "Ø§Ù„ÙƒÙ…ÙŠØ©" : "quantity"}">
+          <button type="button" data-quantity="${key}" data-change="-1" aria-label="${language === "fr" ? "Retirer un" : language === "ar" ? "Ø¥Ù†Ù‚Ø§Øµ Ø§Ù„ÙƒÙ…ÙŠØ©" : "Remove one"}">âˆ’</button>
+          <span>${item.quantity}</span>
+          <button type="button" data-quantity="${key}" data-change="1" aria-label="${language === "fr" ? "Ajouter un" : language === "ar" ? "Ø²ÙŠØ§Ø¯Ø© Ø§Ù„ÙƒÙ…ÙŠØ©" : "Add one"}">+</button>
         </div>
       </div>
-      <button class="remove-item" type="button" data-remove="${product.id}" aria-label="${t("remove")} ${getProductName(product)}">×</button>
+      <button class="remove-item" type="button" data-remove="${key}" aria-label="${t("remove")} ${getProductName(product)}">Ã—</button>
     </div>
   `).join("");
   drawerEmpty.hidden = entries.length > 0;
   drawerItems.hidden = entries.length === 0;
-  document.querySelector(".drawer-whatsapp").hidden = entries.length === 0;
-  if (entries.length) {
-    const message = [
-      t("whatsappMessage"),
-      ...entries.map(product => `• ${cart[product.id]} × ${getProductName(product)}`),
-      t("availabilityMessage")
-    ].join("\n");
-    document.querySelector(".drawer-whatsapp").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-  }
+  const cartTotal = document.querySelector("#cart-total");
+  cartTotal.textContent = entries.length === 0
+    ? ""
+    : hasUnpricedItems
+    ? knownTotal > 0
+      ? `Sous-total estimÃ© (hors articles Ã  prix Ã  confirmer) : ${formatMoney(knownTotal)}`
+      : "Total Ã  confirmer auprÃ¨s de Hakim Pastry."
+    : `Total estimÃ© : ${formatMoney(knownTotal)}`;
+  const cartValidation = document.querySelector("#cart-validation");
+  cartValidation.hidden = true;
+  cartValidation.textContent = "";
+  const checkout = document.querySelector("#checkout-whatsapp");
+  checkout.href = entries.length
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildOrderMessage(entries, knownTotal, hasUnpricedItems))}`
+    : "#";
+  checkout.setAttribute("aria-label", t("sendOrder"));
   updateBagCount();
+}
+
+function buildOrderMessage(entries, knownTotal, hasUnpricedItems) {
+  const lines = [
+    "Bonjour Hakim Pastry ! ðŸŽ‚",
+    "",
+    "Je souhaite commander :",
+    "",
+    ...entries.flatMap(({ item, product, unitPrice }, index) => [
+      `${index + 1}. ${getProductName(product)}`,
+      `   * Pour : ${item.servings ? getServingLabel(item.productId, item.servings) : "format Ã  dÃ©finir"}`,
+      `   * QuantitÃ© : ${item.quantity}`,
+      `   * Prix unitaire : ${unitPrice === null ? "Ã  confirmer" : formatMoney(unitPrice)}`,
+      `   * Total ligne : ${unitPrice === null ? "Ã  confirmer" : formatMoney(unitPrice * item.quantity)}`
+    ]),
+    ""
+  ];
+  if (!hasUnpricedItems) {
+    lines.push(`Total estimÃ© : ${formatMoney(knownTotal)}`);
+  } else if (knownTotal > 0) {
+    lines.push(`Sous-total estimÃ© (hors articles Ã  prix Ã  confirmer) : ${formatMoney(knownTotal)}`);
+  } else {
+    lines.push("Total estimÃ© : Ã  confirmer avec Hakim Pastry.");
+  }
+  if (inspirationInput.files.length) {
+    lines.push("", "ðŸ“· Jâ€™ai choisi une photo dâ€™inspiration pour mon gÃ¢teau personnalisÃ© ; je la joindrai manuellement dans WhatsApp.");
+  }
+  lines.push("", "Bonjour, merci de confirmer la disponibilitÃ©, les dÃ©tails et le prix final de ma commande.");
+  return lines.join("\n");
 }
 
 function showToast(message) {
@@ -459,6 +666,52 @@ document.querySelector(".theme-toggle").addEventListener("click", () => {
   applyTheme();
 });
 
+customCakeOpenButton.addEventListener("click", () => {
+  customCakeForm.hidden = false;
+  customCakeOpenButton.setAttribute("aria-expanded", "true");
+  customCakeForm.querySelector("#cake-servings").focus();
+});
+
+document.querySelectorAll(".custom-cake-close").forEach(button => {
+  button.addEventListener("click", () => {
+    customCakeForm.hidden = true;
+    customCakeOpenButton.setAttribute("aria-expanded", "false");
+    customCakeOpenButton.focus();
+  });
+});
+
+customCakeForm.addEventListener("input", updateCustomCakeWhatsAppLinks);
+
+inspirationInput.addEventListener("change", () => {
+  clearInspirationPreview();
+  const [file] = inspirationInput.files;
+  if (!file) {
+    updateCustomCakeWhatsAppLinks();
+    return;
+  }
+  const supportedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const hasSupportedExtension = /\.(jpe?g|png|webp)$/i.test(file.name);
+  if (!supportedTypes.includes(file.type) && !hasSupportedExtension) {
+    showPhotoError("Choisissez une image au format JPG, PNG ou WEBP.");
+    return;
+  }
+  if (file.size > CUSTOM_CAKE_IMAGE_MAX_SIZE) {
+    showPhotoError("Cette image dÃ©passe 5 Mo. Choisissez une image plus lÃ©gÃ¨re, sâ€™il vous plaÃ®t.");
+    return;
+  }
+  inspirationPreviewUrl = URL.createObjectURL(file);
+  photoPreviewImage.src = inspirationPreviewUrl;
+  photoPreview.hidden = false;
+  photoWhatsappNote.hidden = false;
+  updateCustomCakeWhatsAppLinks();
+});
+
+document.querySelector("#photo-remove").addEventListener("click", () => {
+  inspirationInput.value = "";
+  clearInspirationPreview();
+  updateCustomCakeWhatsAppLinks();
+});
+
 document.querySelector(".category-list").addEventListener("click", event => {
   const button = event.target.closest("[data-category]");
   if (!button) return;
@@ -470,11 +723,36 @@ document.querySelector(".category-list").addEventListener("click", event => {
 grid.addEventListener("click", event => {
   const button = event.target.closest("[data-add]");
   if (!button) return;
-  const id = button.dataset.add;
-  cart[id] = (cart[id] || 0) + 1;
+  const productId = button.dataset.add;
+  const product = products.find(item => item.id === productId);
+  if (!product) return;
+  const servings = button.dataset.servings ? Number(button.dataset.servings) : null;
+  const unitPrice = servings === null ? null : getServingPrice(productId, servings);
+  if (CAKE_PRICING[product.category] && unitPrice === null) {
+    showToast("Choisissez un nombre de personnes avant dâ€™ajouter ce gÃ¢teau.");
+    return;
+  }
+  const key = getCartKey(productId, servings);
+  const existing = cart[key];
+  cart[key] = { productId, servings, quantity: (existing?.quantity || 0) + 1 };
   saveCart();
   renderCart();
-  showToast(`${getProductName(products.find(product => product.id === id))} — ${t("added")}`);
+  showToast(`${getProductName(product)}${servings ? ` Â· ${getServingLabel(productId, servings)}` : ""} â€” ${t("added")}`);
+});
+
+grid.addEventListener("change", event => {
+  const select = event.target.closest("[data-serving-size]");
+  if (!select) return;
+  const productId = select.dataset.servingSize;
+  const servings = Number(select.value);
+  const price = getServingPrice(productId, servings);
+  const card = select.closest("[data-product-card]");
+  if (!card || price === null) return;
+  selectedServings.set(productId, servings);
+  card.querySelector(`[data-selection-size="${productId}"]`).textContent = getServingLabel(productId, servings);
+  card.querySelector(`[data-selection-price="${productId}"]`).textContent = formatMoney(price);
+  card.querySelector(`[data-starting-price="${productId}"]`).textContent = formatMoney(price);
+  card.querySelector(`[data-add="${productId}"]`).dataset.servings = String(servings);
 });
 
 drawerItems.addEventListener("click", event => {
@@ -483,9 +761,9 @@ drawerItems.addEventListener("click", event => {
   if (removeButton) {
     delete cart[removeButton.dataset.remove];
   } else if (quantityButton) {
-    const id = quantityButton.dataset.quantity;
-    cart[id] += Number(quantityButton.dataset.change);
-    if (cart[id] < 1) delete cart[id];
+    const key = quantityButton.dataset.quantity;
+    cart[key].quantity += Number(quantityButton.dataset.change);
+    if (cart[key].quantity < 1) delete cart[key];
   } else {
     return;
   }
@@ -495,6 +773,15 @@ drawerItems.addEventListener("click", event => {
 
 document.querySelector(".bag-button").addEventListener("click", openDrawer);
 document.querySelector(".drawer-close").addEventListener("click", closeDrawer);
+document.querySelector("#checkout-whatsapp").addEventListener("click", event => {
+  if (Object.keys(cart).length) return;
+  event.preventDefault();
+  const message = "Ajoutez dâ€™abord un gÃ¢teau Ã  votre panier avant de commander.";
+  const validation = document.querySelector("#cart-validation");
+  validation.textContent = message;
+  validation.hidden = false;
+  showToast(message);
+});
 document.querySelector(".continue-shopping").addEventListener("click", () => {
   closeDrawer();
   document.querySelector("#menu").scrollIntoView({ behavior: "smooth" });
