@@ -733,7 +733,7 @@ grid.addEventListener("click", event => {
   const product = products.find(item => item.id === productId);
   if (!product) return;
   const servings = button.dataset.servings ? Number(button.dataset.servings) : null;
-  const unitPrice = servings === null ? null : getServingPrice(productId, servings);
+  const unitPrice = getServingPrice(productId, servings);
   if (CAKE_PRICING[product.category] && unitPrice === null) {
     showToast("Choisissez un nombre de personnes avant d’ajouter ce gâteau.");
     return;
