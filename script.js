@@ -4,6 +4,11 @@ const CUSTOM_CAKE_IMAGE_MAX_SIZE = 5 * 1024 * 1024;
 const CART_STORAGE_KEY = "hakim-patisserie-order";
 const THEME_STORAGE_KEY = "hakim-patisserie-theme";
 const CAKE_PRICING = {
+  "mini-cakes": {
+    title: "Mini-gâteau",
+    subtitle: "Mini-gâteaux",
+    fixedPrice: 270
+  },
   "birthday-cakes": {
     title: "Gâteaux Design",
     subtitle: "Gâteaux d’anniversaire • Layer Cakes",
@@ -327,6 +332,7 @@ function getCartKey(productId, servings) {
 function getServingPrice(productId, servings) {
   const product = products.find(item => item.id === productId);
   const pricing = product && CAKE_PRICING[product.category];
+  if (pricing?.fixedPrice !== undefined && servings === null) return pricing.fixedPrice;
   const size = pricing && pricing.sizes.find(item => item.people === servings);
   return size ? size.price : null;
 }
@@ -462,6 +468,7 @@ function renderProducts() {
   grid.innerHTML = visibleProducts.map(product => {
     const pricing = CAKE_PRICING[product.category];
     const sizes = pricing?.sizes;
+    const hasSizePricing = Boolean(sizes);
     const selectedSize = sizes && (
       sizes.find(size => size.people === selectedServings.get(product.id)) || sizes[0]
     );
@@ -471,13 +478,13 @@ function renderProducts() {
       <div class="product-image-wrap">
         <img class="product-image" src="${product.image}" alt="${getProductName(product)}" loading="lazy">
         <span class="product-tag">${t("productTag")}</span>
-        ${pricing ? "" : `<button class="add-button" type="button" data-add="${product.id}" aria-label="${language === "fr" ? "Ajouter" : language === "ar" ? "أضيفوا" : "Add"} ${getProductName(product)} ${language === "fr" ? "à la commande" : language === "ar" ? "إلى الطلب" : "to your order"}">+</button>`}
+        ${hasSizePricing ? "" : `<button class="add-button" type="button" data-add="${product.id}" aria-label="${language === "fr" ? "Ajouter" : language === "ar" ? "أضيفوا" : "Add"} ${getProductName(product)} ${language === "fr" ? "à la commande" : language === "ar" ? "إلى الطلب" : "to your order"}">+</button>`}
       </div>
       <div class="product-meta">
         <div><h3 class="product-name">${getProductName(product)}</h3><p class="product-description">${pricing ? pricing.subtitle : t("productDescription")}</p></div>
-        <span class="product-price"${pricing ? ` data-starting-price="${product.id}"` : ""}>${pricing ? `À partir de ${formatMoney(pricing.sizes[0].price)}` : formatPrice()}</span>
+        <span class="product-price"${pricing ? ` data-starting-price="${product.id}"` : ""}>${pricing ? hasSizePricing ? `À partir de ${formatMoney(sizes[0].price)}` : formatMoney(pricing.fixedPrice) : formatPrice()}</span>
       </div>
-      ${pricing ? `
+      ${hasSizePricing ? `
         <div class="product-order-options">
           <label class="serving-size-label" for="${product.id}-serving-size">${pricing.sizeLabel || "Nombre de personnes"}
             <select id="${product.id}-serving-size" data-serving-size="${product.id}">
@@ -566,7 +573,7 @@ function renderCart() {
       <img src="${product.image}" alt="" loading="lazy">
       <div class="drawer-item-details">
         <h3>${getProductName(product)}</h3>
-        <p>${item.servings ? `Pour ${getServingLabel(item.productId, item.servings)}` : "Format à choisir ou prix à confirmer"}</p>
+        <p>${item.servings ? `Pour ${getServingLabel(item.productId, item.servings)}` : product.category === "mini-cakes" ? "Format : mini-gâteau" : "Format à choisir ou prix à confirmer"}</p>
         <p>Prix unitaire : ${unitPrice === null ? "à confirmer" : formatMoney(unitPrice)}</p>
         <p class="drawer-line-total">Total ligne : ${unitPrice === null ? "à confirmer" : formatMoney(unitPrice * item.quantity)}</p>
         <div class="quantity-control" aria-label="${getProductName(product)} ${language === "fr" ? "quantité" : language === "ar" ? "الكمية" : "quantity"}">
@@ -607,7 +614,7 @@ function buildOrderMessage(entries, knownTotal, hasUnpricedItems) {
     "",
     ...entries.flatMap(({ item, product, unitPrice }, index) => [
       `${index + 1}. ${getProductName(product)}`,
-      `   * Pour : ${item.servings ? getServingLabel(item.productId, item.servings) : "format à définir"}`,
+      `   * Pour : ${item.servings ? getServingLabel(item.productId, item.servings) : product.category === "mini-cakes" ? "mini-gâteau" : "format à définir"}`,
       `   * Quantité : ${item.quantity}`,
       `   * Prix unitaire : ${unitPrice === null ? "à confirmer" : formatMoney(unitPrice)}`,
       `   * Total ligne : ${unitPrice === null ? "à confirmer" : formatMoney(unitPrice * item.quantity)}`
