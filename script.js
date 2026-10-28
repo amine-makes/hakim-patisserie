@@ -315,7 +315,7 @@ products.forEach(product => {
 function getProductName(product) {
   const pricing = CAKE_PRICING[product.category];
   if (pricing) {
-    return `${pricing.title} · Modèle ${String(productNumbers.get(product.id)).padStart(2, "0")}`;
+    return `${pricing.title} · ${String(productNumbers.get(product.id)).padStart(2, "0")}`;
   }
   return `${t(productNameKeys[product.category])} ${String(productNumbers.get(product.id)).padStart(2, "0")}`;
 }
@@ -505,7 +505,6 @@ function updateCustomCakeWhatsAppLinks() {
     ["cake-servings", "🎂 Nombre de personnes"],
     ["cake-flavor", "🍰 Saveur souhaitée"],
     ["cake-date", "📅 Date souhaitée"],
-    ["cake-budget", "💰 Budget approximatif"],
     ["cake-details", "📝 Détails"]
   ];
   const details = fields
